@@ -4,4 +4,4 @@ Este repositório destina-se ao desenvolvimento do controle de estoque para micr
 
 # Sobre os desenvolvedores
 
-Desenvolvido por Matheus L. Silvati e Caroline Paganelli, alunos da Unicep.
+Desenvolvido por Matheus L. Silvati e Caroline Paganelli, alunos da Engenharia de Computação da Centro Universitário Central Paulista - Unicep.
