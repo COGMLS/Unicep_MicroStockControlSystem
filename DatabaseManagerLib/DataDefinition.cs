@@ -6,6 +6,11 @@
  * All common datatypes are direct accessable and the
  * custom dataypes have their own getters and setters
  * to provide the correct data treatment.
+ * -------------------------------------------------------
+ * NOTE: The DataManipulator lib has the functions to set
+ * correctly all data property on DateDefinition class, 
+ * including error reporting and error sum to create
+ * objects.
  */
 
 namespace DatabaseManagerLib
