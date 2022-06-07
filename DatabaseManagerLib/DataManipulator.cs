@@ -23,7 +23,7 @@ namespace DatabaseManagerLib
 		}
 
 		// Function to test and partially compare
-		public static bool UintCompPart(uint basenum, uint testnum)
+		public static bool UintCompPart(ulong basenum, ulong testnum)
 		{
 			return basenum.ToString().Contains(testnum.ToString());
 		}
