@@ -15,17 +15,17 @@
 
 namespace DatabaseManagerLib
 {
-	// DbDate: struct for storage the date.
+	// DbDate: class for storage the date.
 	// NOTE: To determinate if the date will not include time, use Hours >= 24
 	// NOTE: To determinate a date not available for ExpirationDate property, use Day = 0
-	struct DbDate
+	public class DbDate
 	{
-		public uint Seconds;
-		public uint Minutes;
-		public uint Hours;
-		public uint Day;
-		public uint Month;
-		public uint Year;
+		public uint Seconds { get; set; }
+		public uint Minutes { get; set; }
+		public uint Hours { get; set; }
+		public uint Day { get; set; }
+		public uint Month { get; set; }
+		public uint Year { get; set; }
 	}
 
 	// DataDefinition: class to define the list for the app database
@@ -202,6 +202,16 @@ namespace DatabaseManagerLib
 			}
 
 			return dateStr;
+		}
+
+		// ManufacturingDateDb:
+		public DbDate GetManufacDateDb()
+		{
+			DbDate db = new DbDate();
+
+			db = this.ManufacturingDate;
+
+			return db;
 		}
 
 		// Expiration formated date (DD/MM/AAAA)
