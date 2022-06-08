@@ -309,6 +309,19 @@ namespace DatabaseManagerLib
 			this.ManufacturingDate.Seconds = 0;
 		}
 
+		// Unkown or not available Manufacturing Date:
+		public void SetManufacDate()
+		{
+			this.ManufacturingDate.Day = 0;
+			this.ManufacturingDate.Month = 0;
+			this.ManufacturingDate.Year = 0;
+
+			// Turn as unavailable time.
+			this.ManufacturingDate.Hours = 24;
+			this.ManufacturingDate.Minutes = 0;
+			this.ManufacturingDate.Seconds = 0;
+		}
+
 		// ExpirationDate with complete date and time:
 		public void SetExpiratDate(uint Day, uint Month, uint Year, uint Hours, uint Minutes, uint Seconds)
 		{
@@ -344,6 +357,96 @@ namespace DatabaseManagerLib
 			this.ExpirationDate.Hours = 24;
 			this.ExpirationDate.Minutes = 0;
 			this.ExpirationDate.Seconds = 0;
+		}
+
+		// Update object data:
+		public bool UpdateData(ref DataDefinition EditedObj)
+		{
+			// Check if the object is null
+			if(EditedObj == null)
+			{
+				return false;
+			}
+
+			try
+			{
+				// Update data that not match with storage object data:
+				if (this.Product != EditedObj.Product)
+				{
+					this.Product = EditedObj.Product;
+				}
+				if (this.Brand != EditedObj.Brand)
+				{
+					this.Brand = EditedObj.Brand;
+				}
+				if (this.Manufacturer != EditedObj.Manufacturer)
+				{
+					this.Manufacturer = EditedObj.Manufacturer;
+				}
+				if (this.Lot != EditedObj.Lot)
+				{
+					this.Lot = EditedObj.Lot;
+				}
+				if (this.ManufacturingDate != EditedObj.ManufacturingDate)
+				{
+					// If the new date has only date information:
+					if (EditedObj.ManufacturingDate.Hours > 23)
+					{
+						this.SetManufacDate(EditedObj.ManufacturingDate.Day, EditedObj.ManufacturingDate.Month, EditedObj.ManufacturingDate.Year);
+					}
+					// If the new date has all informations available:
+					else if(EditedObj.ManufacturingDate.Hours < 24)
+					{
+						this.SetManufacDate(EditedObj.ManufacturingDate.Day, EditedObj.ManufacturingDate.Month, EditedObj.ManufacturingDate.Year, EditedObj.ManufacturingDate.Hours, EditedObj.ManufacturingDate.Minutes, EditedObj.ManufacturingDate.Seconds);
+					}
+					// If the new date is a blanck data
+					else
+					{
+						this.SetManufacDate();
+					}
+				}
+				if (this.ExpirationDate != EditedObj.ExpirationDate)
+				{
+					// If the new date has only date information:
+					if (EditedObj.ExpirationDate.Hours > 23)
+					{
+						this.SetExpiratDate(EditedObj.ExpirationDate.Day, EditedObj.ExpirationDate.Month, EditedObj.ExpirationDate.Year);
+					}
+					// If the new date has all informations available:
+					else if (EditedObj.ExpirationDate.Hours < 24)
+					{
+						this.SetExpiratDate(EditedObj.ExpirationDate.Day, EditedObj.ExpirationDate.Month, EditedObj.ExpirationDate.Year, EditedObj.ExpirationDate.Hours, EditedObj.ExpirationDate.Minutes, EditedObj.ExpirationDate.Seconds);
+					}
+					// If the new date is a blanck data
+					else
+					{
+						this.SetExpiratDate();
+					}
+				}
+				if (this.Unit != EditedObj.Unit)
+				{
+					this.Unit = EditedObj.Unit;
+				}
+				if (this.UnitPrice != EditedObj.UnitPrice)
+				{
+					this.UnitPrice = EditedObj.UnitPrice;
+				}
+				if (this.QuantityStock != EditedObj.QuantityStock)
+				{
+					this.QuantityStock = EditedObj.QuantityStock;
+				}
+				if (this.IdCode != EditedObj.IdCode)
+				{
+					this.IdCode = EditedObj.IdCode;
+				}
+
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+				throw;
+			}
 		}
 	}
 }
