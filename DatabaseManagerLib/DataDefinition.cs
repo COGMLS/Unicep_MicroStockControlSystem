@@ -53,7 +53,7 @@ namespace DatabaseManagerLib
 		//
 
 		// Default constructor: using ALL informations available.
-		DataDefinition(ulong StockItemID, string Product, string Brand, string Manufacturer, string Lot, DbDate ManufacturingDate, DbDate ExpirationDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
+		public DataDefinition(ulong StockItemID, string Product, string Brand, string Manufacturer, string Lot, DbDate ManufacturingDate, DbDate ExpirationDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
 		{
 			// Set object property values:
 			this.StockItemID = StockItemID;
@@ -70,7 +70,7 @@ namespace DatabaseManagerLib
 		}
 
 		// Constructor for NO Brand info.
-		DataDefinition(ulong StockItemID, string Product, string Manufacturer, string Lot, DbDate ManufacturingDate, DbDate ExpirationDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
+		public DataDefinition(ulong StockItemID, string Product, string Manufacturer, string Lot, DbDate ManufacturingDate, DbDate ExpirationDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
 		{
 			// Set object property values:
 			this.StockItemID = StockItemID;
@@ -87,7 +87,7 @@ namespace DatabaseManagerLib
 		}
 
 		// Constructor for NO ExpirationDate
-		DataDefinition(ulong StockItemID, string Product, string Brand, string Manufacturer, string Lot, DbDate ManufacturingDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
+		public DataDefinition(ulong StockItemID, string Product, string Brand, string Manufacturer, string Lot, DbDate ManufacturingDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
 		{
 			DbDate ExpirationDate = new DbDate();
 
@@ -114,7 +114,7 @@ namespace DatabaseManagerLib
 		}
 
 		// Constructor for NO Brand info and Expiration Date:
-		DataDefinition(ulong StockItemID, string Product, string Manufacturer, string Lot, DbDate ManufacturingDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
+		public DataDefinition(ulong StockItemID, string Product, string Manufacturer, string Lot, DbDate ManufacturingDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
 		{
 			DbDate ExpirationDate = new DbDate();
 
