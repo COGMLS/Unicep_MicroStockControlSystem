@@ -322,6 +322,12 @@ namespace DatabaseManagerLib
 			this.ManufacturingDate.Seconds = 0;
 		}
 
+		// ManufacturingDate object ready to be setted:
+		public void SetManufacDate(DbDate ManufacturingDate)
+		{
+			this.ManufacturingDate = ManufacturingDate;
+		}
+
 		// ExpirationDate with complete date and time:
 		public void SetExpiratDate(uint Day, uint Month, uint Year, uint Hours, uint Minutes, uint Seconds)
 		{
@@ -357,6 +363,12 @@ namespace DatabaseManagerLib
 			this.ExpirationDate.Hours = 24;
 			this.ExpirationDate.Minutes = 0;
 			this.ExpirationDate.Seconds = 0;
+		}
+
+		// ExpirationDate object ready to be setted:
+		public void SetExpiratDate(DbDate ExpirationDate)
+		{
+			this.ExpirationDate = ExpirationDate;
 		}
 
 		// Update object data:
