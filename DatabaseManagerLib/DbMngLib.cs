@@ -88,19 +88,113 @@ namespace DatabaseManagerLib
 		{
 			try
 			{
-				item.StockItemID = StockUniqueIDCounter;
+				int SetUID = DataManipulator.SetStockUID(ref StockUniqueIDCounter, ref item);
 
-				list.Add(item);
+				if(SetUID == 0)
+				{
+					list.Add(item);
 
-				StockUniqueIDCounter++;
+					return true;
+				}
 
-				return true;
+				return false;
 			}
 			catch (Exception)
 			{
 				return false;
 				throw;
 			}
+		}
+
+		// Register another product with same information, except Lot, Manufacturing and Expiration Date, Quantity in Stock and IdCode
+		public static bool RegProdStock(ref List<DataDefinition> list, ref ulong StockUniqueIDCounter, ulong StockItemIDRef, string Lot, DbDate ManufacturingDate, DbDate ExpirationDate, ulong QuantityStock, string IdCode)
+		{
+			// Find the item:
+			foreach (var item in list)
+			{
+				if(item.StockItemID == StockItemIDRef)
+				{
+					try
+					{
+						// Copy the object and register another
+						DataDefinition CopyObj = item;
+
+						// Set a new StockItemID
+						int SetUID = DataManipulator.SetStockUID(ref StockUniqueIDCounter, ref CopyObj);
+
+						if (SetUID == 0)
+						{
+							// Set the new data
+							CopyObj.Lot = Lot;
+							CopyObj.SetManufacDate(ManufacturingDate);
+							CopyObj.SetExpiratDate(ExpirationDate);
+							CopyObj.QuantityStock = QuantityStock;
+							CopyObj.IdCode = IdCode;
+
+							// Add the orphan obj to the stock:
+							list.Add(CopyObj);
+
+							return true;
+						}
+
+						return false;
+					}
+					catch(Exception)
+					{
+						return false;
+						throw;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		// Register another product with same information, except Lot, Manufacturing Date, Quantity in Stock and IdCode
+		public static bool RegProdStock(ref List<DataDefinition> list, ref ulong StockUniqueIDCounter, ulong StockItemIDRef, string Lot, DbDate ManufacturingDate, ulong QuantityStock, string IdCode)
+		{
+			// Find the item:
+			foreach (var item in list)
+			{
+				if (item.StockItemID == StockItemIDRef)
+				{
+					try
+					{
+						// Copy the object and register another
+						DataDefinition CopyObj = item;
+
+						// Creates an ExpirationDate obj with unkown date
+						DbDate ExpirationDate = new DbDate();
+
+						// Set a new StockItemID
+						int SetUID = DataManipulator.SetStockUID(ref StockUniqueIDCounter, ref CopyObj);
+
+						if (SetUID == 0)
+						{
+							// Set the new data
+							CopyObj.Lot = Lot;
+							CopyObj.SetManufacDate(ManufacturingDate);
+							CopyObj.SetExpiratDate(ExpirationDate);
+							CopyObj.QuantityStock = QuantityStock;
+							CopyObj.IdCode = IdCode;
+
+							// Add the orphan obj to the stock:
+							list.Add(CopyObj);
+
+							return true;
+						}
+
+						return false;
+					}
+					catch (Exception)
+					{
+						return false;
+						throw;
+					}
+				}
+			}
+
+			return false;
 		}
 
 		// Unregister a product in stock
