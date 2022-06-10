@@ -29,36 +29,36 @@
 		private void InitializeComponent()
 		{
 			this.StockGroupBox = new System.Windows.Forms.GroupBox();
-			this.StockProductsGroupBox = new System.Windows.Forms.GroupBox();
 			this.OutStockProductsGroupBox = new System.Windows.Forms.GroupBox();
-			this.InStockActiveProductsLabel = new System.Windows.Forms.Label();
-			this.InStockInactiveProductsLabel = new System.Windows.Forms.Label();
-			this.InStockActiveProductsTextBox = new System.Windows.Forms.TextBox();
-			this.InStockInactiveProductsTextBox = new System.Windows.Forms.TextBox();
-			this.OutStockActiveProdutcsTextBox = new System.Windows.Forms.TextBox();
-			this.OutStockWaitingProductsTextBox = new System.Windows.Forms.TextBox();
-			this.OutStockActiveProductsLabel = new System.Windows.Forms.Label();
 			this.OutStockWaitingProductsLabel = new System.Windows.Forms.Label();
+			this.OutStockActiveProductsLabel = new System.Windows.Forms.Label();
+			this.OutStockWaitingProductsTextBox = new System.Windows.Forms.TextBox();
+			this.OutStockActiveProdutcsTextBox = new System.Windows.Forms.TextBox();
+			this.StockProductsGroupBox = new System.Windows.Forms.GroupBox();
+			this.InStockInactiveProductsTextBox = new System.Windows.Forms.TextBox();
+			this.InStockActiveProductsTextBox = new System.Windows.Forms.TextBox();
+			this.InStockInactiveProductsLabel = new System.Windows.Forms.Label();
+			this.InStockActiveProductsLabel = new System.Windows.Forms.Label();
 			this.NotificationsGroupBox = new System.Windows.Forms.GroupBox();
-			this.WarningNotificationsLabel = new System.Windows.Forms.Label();
-			this.NotificationsLabel = new System.Windows.Forms.Label();
-			this.WarningNotificationsTextBox = new System.Windows.Forms.TextBox();
+			this.CleanNotificationsButton = new System.Windows.Forms.Button();
+			this.VisualizeNotificationsButton = new System.Windows.Forms.Button();
 			this.NotificationsTextBox = new System.Windows.Forms.TextBox();
+			this.WarningNotificationsTextBox = new System.Windows.Forms.TextBox();
+			this.NotificationsLabel = new System.Windows.Forms.Label();
+			this.WarningNotificationsLabel = new System.Windows.Forms.Label();
 			this.StockControlGroupBox = new System.Windows.Forms.GroupBox();
-			this.ProductsRegistryGroupBox = new System.Windows.Forms.GroupBox();
-			this.Add2StockButton = new System.Windows.Forms.Button();
-			this.RemoveFromStockButton = new System.Windows.Forms.Button();
-			this.SearchProductButton = new System.Windows.Forms.Button();
 			this.VisualizeStockButton = new System.Windows.Forms.Button();
-			this.VisualizeRegButton = new System.Windows.Forms.Button();
+			this.SearchProductButton = new System.Windows.Forms.Button();
+			this.RemoveFromStockButton = new System.Windows.Forms.Button();
+			this.Add2StockButton = new System.Windows.Forms.Button();
+			this.ProductsRegistryGroupBox = new System.Windows.Forms.GroupBox();
+			this.SaveChangesRegButton = new System.Windows.Forms.Button();
+			this.RegisterProductButton = new System.Windows.Forms.Button();
 			this.RemoveProductButton = new System.Windows.Forms.Button();
 			this.EditProductButton = new System.Windows.Forms.Button();
-			this.RegisterProductButton = new System.Windows.Forms.Button();
-			this.VisualizeNotificationsButton = new System.Windows.Forms.Button();
-			this.CleanNotificationsButton = new System.Windows.Forms.Button();
 			this.StockGroupBox.SuspendLayout();
-			this.StockProductsGroupBox.SuspendLayout();
 			this.OutStockProductsGroupBox.SuspendLayout();
+			this.StockProductsGroupBox.SuspendLayout();
 			this.NotificationsGroupBox.SuspendLayout();
 			this.StockControlGroupBox.SuspendLayout();
 			this.ProductsRegistryGroupBox.SuspendLayout();
@@ -75,19 +75,6 @@
 			this.StockGroupBox.TabStop = false;
 			this.StockGroupBox.Text = "Estoque";
 			// 
-			// StockProductsGroupBox
-			// 
-			this.StockProductsGroupBox.Controls.Add(this.InStockInactiveProductsTextBox);
-			this.StockProductsGroupBox.Controls.Add(this.InStockActiveProductsTextBox);
-			this.StockProductsGroupBox.Controls.Add(this.InStockInactiveProductsLabel);
-			this.StockProductsGroupBox.Controls.Add(this.InStockActiveProductsLabel);
-			this.StockProductsGroupBox.Location = new System.Drawing.Point(6, 22);
-			this.StockProductsGroupBox.Name = "StockProductsGroupBox";
-			this.StockProductsGroupBox.Size = new System.Drawing.Size(256, 78);
-			this.StockProductsGroupBox.TabIndex = 0;
-			this.StockProductsGroupBox.TabStop = false;
-			this.StockProductsGroupBox.Text = "Produtos no Estoque";
-			// 
 			// OutStockProductsGroupBox
 			// 
 			this.OutStockProductsGroupBox.Controls.Add(this.OutStockWaitingProductsLabel);
@@ -101,62 +88,23 @@
 			this.OutStockProductsGroupBox.TabStop = false;
 			this.OutStockProductsGroupBox.Text = "Produtos Fora do Estoque";
 			// 
-			// InStockActiveProductsLabel
+			// OutStockWaitingProductsLabel
 			// 
-			this.InStockActiveProductsLabel.AutoSize = true;
-			this.InStockActiveProductsLabel.Location = new System.Drawing.Point(6, 19);
-			this.InStockActiveProductsLabel.Name = "InStockActiveProductsLabel";
-			this.InStockActiveProductsLabel.Size = new System.Drawing.Size(43, 15);
-			this.InStockActiveProductsLabel.TabIndex = 0;
-			this.InStockActiveProductsLabel.Text = "Ativos:";
+			this.OutStockWaitingProductsLabel.AutoSize = true;
+			this.OutStockWaitingProductsLabel.Location = new System.Drawing.Point(6, 41);
+			this.OutStockWaitingProductsLabel.Name = "OutStockWaitingProductsLabel";
+			this.OutStockWaitingProductsLabel.Size = new System.Drawing.Size(64, 15);
+			this.OutStockWaitingProductsLabel.TabIndex = 6;
+			this.OutStockWaitingProductsLabel.Text = "Em espera:";
 			// 
-			// InStockInactiveProductsLabel
+			// OutStockActiveProductsLabel
 			// 
-			this.InStockInactiveProductsLabel.AutoSize = true;
-			this.InStockInactiveProductsLabel.Location = new System.Drawing.Point(6, 41);
-			this.InStockInactiveProductsLabel.Name = "InStockInactiveProductsLabel";
-			this.InStockInactiveProductsLabel.Size = new System.Drawing.Size(51, 15);
-			this.InStockInactiveProductsLabel.TabIndex = 1;
-			this.InStockInactiveProductsLabel.Text = "Inativos:";
-			// 
-			// InStockActiveProductsTextBox
-			// 
-			this.InStockActiveProductsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.InStockActiveProductsTextBox.Location = new System.Drawing.Point(80, 19);
-			this.InStockActiveProductsTextBox.Name = "InStockActiveProductsTextBox";
-			this.InStockActiveProductsTextBox.PlaceholderText = "No data available";
-			this.InStockActiveProductsTextBox.ReadOnly = true;
-			this.InStockActiveProductsTextBox.Size = new System.Drawing.Size(170, 16);
-			this.InStockActiveProductsTextBox.TabIndex = 2;
-			this.InStockActiveProductsTextBox.TabStop = false;
-			this.InStockActiveProductsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.InStockActiveProductsTextBox.WordWrap = false;
-			// 
-			// InStockInactiveProductsTextBox
-			// 
-			this.InStockInactiveProductsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.InStockInactiveProductsTextBox.Location = new System.Drawing.Point(80, 41);
-			this.InStockInactiveProductsTextBox.Name = "InStockInactiveProductsTextBox";
-			this.InStockInactiveProductsTextBox.PlaceholderText = "No data available";
-			this.InStockInactiveProductsTextBox.ReadOnly = true;
-			this.InStockInactiveProductsTextBox.Size = new System.Drawing.Size(170, 16);
-			this.InStockInactiveProductsTextBox.TabIndex = 3;
-			this.InStockInactiveProductsTextBox.TabStop = false;
-			this.InStockInactiveProductsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.InStockInactiveProductsTextBox.WordWrap = false;
-			// 
-			// OutStockActiveProdutcsTextBox
-			// 
-			this.OutStockActiveProdutcsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.OutStockActiveProdutcsTextBox.Location = new System.Drawing.Point(80, 19);
-			this.OutStockActiveProdutcsTextBox.Name = "OutStockActiveProdutcsTextBox";
-			this.OutStockActiveProdutcsTextBox.PlaceholderText = "No data available";
-			this.OutStockActiveProdutcsTextBox.ReadOnly = true;
-			this.OutStockActiveProdutcsTextBox.Size = new System.Drawing.Size(170, 16);
-			this.OutStockActiveProdutcsTextBox.TabIndex = 3;
-			this.OutStockActiveProdutcsTextBox.TabStop = false;
-			this.OutStockActiveProdutcsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.OutStockActiveProdutcsTextBox.WordWrap = false;
+			this.OutStockActiveProductsLabel.AutoSize = true;
+			this.OutStockActiveProductsLabel.Location = new System.Drawing.Point(6, 19);
+			this.OutStockActiveProductsLabel.Name = "OutStockActiveProductsLabel";
+			this.OutStockActiveProductsLabel.Size = new System.Drawing.Size(43, 15);
+			this.OutStockActiveProductsLabel.TabIndex = 5;
+			this.OutStockActiveProductsLabel.Text = "Ativos:";
 			// 
 			// OutStockWaitingProductsTextBox
 			// 
@@ -171,23 +119,75 @@
 			this.OutStockWaitingProductsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.OutStockWaitingProductsTextBox.WordWrap = false;
 			// 
-			// OutStockActiveProductsLabel
+			// OutStockActiveProdutcsTextBox
 			// 
-			this.OutStockActiveProductsLabel.AutoSize = true;
-			this.OutStockActiveProductsLabel.Location = new System.Drawing.Point(6, 19);
-			this.OutStockActiveProductsLabel.Name = "OutStockActiveProductsLabel";
-			this.OutStockActiveProductsLabel.Size = new System.Drawing.Size(43, 15);
-			this.OutStockActiveProductsLabel.TabIndex = 5;
-			this.OutStockActiveProductsLabel.Text = "Ativos:";
+			this.OutStockActiveProdutcsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.OutStockActiveProdutcsTextBox.Location = new System.Drawing.Point(80, 19);
+			this.OutStockActiveProdutcsTextBox.Name = "OutStockActiveProdutcsTextBox";
+			this.OutStockActiveProdutcsTextBox.PlaceholderText = "No data available";
+			this.OutStockActiveProdutcsTextBox.ReadOnly = true;
+			this.OutStockActiveProdutcsTextBox.Size = new System.Drawing.Size(170, 16);
+			this.OutStockActiveProdutcsTextBox.TabIndex = 3;
+			this.OutStockActiveProdutcsTextBox.TabStop = false;
+			this.OutStockActiveProdutcsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.OutStockActiveProdutcsTextBox.WordWrap = false;
 			// 
-			// OutStockWaitingProductsLabel
+			// StockProductsGroupBox
 			// 
-			this.OutStockWaitingProductsLabel.AutoSize = true;
-			this.OutStockWaitingProductsLabel.Location = new System.Drawing.Point(6, 41);
-			this.OutStockWaitingProductsLabel.Name = "OutStockWaitingProductsLabel";
-			this.OutStockWaitingProductsLabel.Size = new System.Drawing.Size(64, 15);
-			this.OutStockWaitingProductsLabel.TabIndex = 6;
-			this.OutStockWaitingProductsLabel.Text = "Em espera:";
+			this.StockProductsGroupBox.Controls.Add(this.InStockInactiveProductsTextBox);
+			this.StockProductsGroupBox.Controls.Add(this.InStockActiveProductsTextBox);
+			this.StockProductsGroupBox.Controls.Add(this.InStockInactiveProductsLabel);
+			this.StockProductsGroupBox.Controls.Add(this.InStockActiveProductsLabel);
+			this.StockProductsGroupBox.Location = new System.Drawing.Point(6, 22);
+			this.StockProductsGroupBox.Name = "StockProductsGroupBox";
+			this.StockProductsGroupBox.Size = new System.Drawing.Size(256, 78);
+			this.StockProductsGroupBox.TabIndex = 0;
+			this.StockProductsGroupBox.TabStop = false;
+			this.StockProductsGroupBox.Text = "Produtos no Estoque";
+			// 
+			// InStockInactiveProductsTextBox
+			// 
+			this.InStockInactiveProductsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.InStockInactiveProductsTextBox.Location = new System.Drawing.Point(80, 41);
+			this.InStockInactiveProductsTextBox.Name = "InStockInactiveProductsTextBox";
+			this.InStockInactiveProductsTextBox.PlaceholderText = "No data available";
+			this.InStockInactiveProductsTextBox.ReadOnly = true;
+			this.InStockInactiveProductsTextBox.Size = new System.Drawing.Size(170, 16);
+			this.InStockInactiveProductsTextBox.TabIndex = 3;
+			this.InStockInactiveProductsTextBox.TabStop = false;
+			this.InStockInactiveProductsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.InStockInactiveProductsTextBox.WordWrap = false;
+			// 
+			// InStockActiveProductsTextBox
+			// 
+			this.InStockActiveProductsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.InStockActiveProductsTextBox.Location = new System.Drawing.Point(80, 19);
+			this.InStockActiveProductsTextBox.Name = "InStockActiveProductsTextBox";
+			this.InStockActiveProductsTextBox.PlaceholderText = "No data available";
+			this.InStockActiveProductsTextBox.ReadOnly = true;
+			this.InStockActiveProductsTextBox.Size = new System.Drawing.Size(170, 16);
+			this.InStockActiveProductsTextBox.TabIndex = 2;
+			this.InStockActiveProductsTextBox.TabStop = false;
+			this.InStockActiveProductsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.InStockActiveProductsTextBox.WordWrap = false;
+			// 
+			// InStockInactiveProductsLabel
+			// 
+			this.InStockInactiveProductsLabel.AutoSize = true;
+			this.InStockInactiveProductsLabel.Location = new System.Drawing.Point(6, 41);
+			this.InStockInactiveProductsLabel.Name = "InStockInactiveProductsLabel";
+			this.InStockInactiveProductsLabel.Size = new System.Drawing.Size(51, 15);
+			this.InStockInactiveProductsLabel.TabIndex = 1;
+			this.InStockInactiveProductsLabel.Text = "Inativos:";
+			// 
+			// InStockActiveProductsLabel
+			// 
+			this.InStockActiveProductsLabel.AutoSize = true;
+			this.InStockActiveProductsLabel.Location = new System.Drawing.Point(6, 19);
+			this.InStockActiveProductsLabel.Name = "InStockActiveProductsLabel";
+			this.InStockActiveProductsLabel.Size = new System.Drawing.Size(43, 15);
+			this.InStockActiveProductsLabel.TabIndex = 0;
+			this.InStockActiveProductsLabel.Text = "Ativos:";
 			// 
 			// NotificationsGroupBox
 			// 
@@ -204,36 +204,23 @@
 			this.NotificationsGroupBox.TabStop = false;
 			this.NotificationsGroupBox.Text = "Notificações";
 			// 
-			// WarningNotificationsLabel
+			// CleanNotificationsButton
 			// 
-			this.WarningNotificationsLabel.AutoSize = true;
-			this.WarningNotificationsLabel.Location = new System.Drawing.Point(6, 19);
-			this.WarningNotificationsLabel.Name = "WarningNotificationsLabel";
-			this.WarningNotificationsLabel.Size = new System.Drawing.Size(44, 15);
-			this.WarningNotificationsLabel.TabIndex = 0;
-			this.WarningNotificationsLabel.Text = "Avisos:";
+			this.CleanNotificationsButton.Location = new System.Drawing.Point(173, 77);
+			this.CleanNotificationsButton.Name = "CleanNotificationsButton";
+			this.CleanNotificationsButton.Size = new System.Drawing.Size(75, 23);
+			this.CleanNotificationsButton.TabIndex = 6;
+			this.CleanNotificationsButton.Text = "Limpar";
+			this.CleanNotificationsButton.UseVisualStyleBackColor = true;
 			// 
-			// NotificationsLabel
+			// VisualizeNotificationsButton
 			// 
-			this.NotificationsLabel.AutoSize = true;
-			this.NotificationsLabel.Location = new System.Drawing.Point(6, 41);
-			this.NotificationsLabel.Name = "NotificationsLabel";
-			this.NotificationsLabel.Size = new System.Drawing.Size(76, 15);
-			this.NotificationsLabel.TabIndex = 1;
-			this.NotificationsLabel.Text = "Notificações:";
-			// 
-			// WarningNotificationsTextBox
-			// 
-			this.WarningNotificationsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.WarningNotificationsTextBox.Location = new System.Drawing.Point(121, 19);
-			this.WarningNotificationsTextBox.Name = "WarningNotificationsTextBox";
-			this.WarningNotificationsTextBox.PlaceholderText = "No data available";
-			this.WarningNotificationsTextBox.ReadOnly = true;
-			this.WarningNotificationsTextBox.Size = new System.Drawing.Size(127, 16);
-			this.WarningNotificationsTextBox.TabIndex = 3;
-			this.WarningNotificationsTextBox.TabStop = false;
-			this.WarningNotificationsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.WarningNotificationsTextBox.WordWrap = false;
+			this.VisualizeNotificationsButton.Location = new System.Drawing.Point(6, 77);
+			this.VisualizeNotificationsButton.Name = "VisualizeNotificationsButton";
+			this.VisualizeNotificationsButton.Size = new System.Drawing.Size(75, 23);
+			this.VisualizeNotificationsButton.TabIndex = 5;
+			this.VisualizeNotificationsButton.Text = "Visualizar";
+			this.VisualizeNotificationsButton.UseVisualStyleBackColor = true;
 			// 
 			// NotificationsTextBox
 			// 
@@ -248,6 +235,37 @@
 			this.NotificationsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.NotificationsTextBox.WordWrap = false;
 			// 
+			// WarningNotificationsTextBox
+			// 
+			this.WarningNotificationsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.WarningNotificationsTextBox.Location = new System.Drawing.Point(121, 19);
+			this.WarningNotificationsTextBox.Name = "WarningNotificationsTextBox";
+			this.WarningNotificationsTextBox.PlaceholderText = "No data available";
+			this.WarningNotificationsTextBox.ReadOnly = true;
+			this.WarningNotificationsTextBox.Size = new System.Drawing.Size(127, 16);
+			this.WarningNotificationsTextBox.TabIndex = 3;
+			this.WarningNotificationsTextBox.TabStop = false;
+			this.WarningNotificationsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.WarningNotificationsTextBox.WordWrap = false;
+			// 
+			// NotificationsLabel
+			// 
+			this.NotificationsLabel.AutoSize = true;
+			this.NotificationsLabel.Location = new System.Drawing.Point(6, 41);
+			this.NotificationsLabel.Name = "NotificationsLabel";
+			this.NotificationsLabel.Size = new System.Drawing.Size(76, 15);
+			this.NotificationsLabel.TabIndex = 1;
+			this.NotificationsLabel.Text = "Notificações:";
+			// 
+			// WarningNotificationsLabel
+			// 
+			this.WarningNotificationsLabel.AutoSize = true;
+			this.WarningNotificationsLabel.Location = new System.Drawing.Point(6, 19);
+			this.WarningNotificationsLabel.Name = "WarningNotificationsLabel";
+			this.WarningNotificationsLabel.Size = new System.Drawing.Size(44, 15);
+			this.WarningNotificationsLabel.TabIndex = 0;
+			this.WarningNotificationsLabel.Text = "Avisos:";
+			// 
 			// StockControlGroupBox
 			// 
 			this.StockControlGroupBox.Controls.Add(this.VisualizeStockButton);
@@ -261,36 +279,14 @@
 			this.StockControlGroupBox.TabStop = false;
 			this.StockControlGroupBox.Text = "Controle do Estoque";
 			// 
-			// ProductsRegistryGroupBox
+			// VisualizeStockButton
 			// 
-			this.ProductsRegistryGroupBox.Controls.Add(this.VisualizeRegButton);
-			this.ProductsRegistryGroupBox.Controls.Add(this.RegisterProductButton);
-			this.ProductsRegistryGroupBox.Controls.Add(this.RemoveProductButton);
-			this.ProductsRegistryGroupBox.Controls.Add(this.EditProductButton);
-			this.ProductsRegistryGroupBox.Location = new System.Drawing.Point(338, 221);
-			this.ProductsRegistryGroupBox.Name = "ProductsRegistryGroupBox";
-			this.ProductsRegistryGroupBox.Size = new System.Drawing.Size(255, 100);
-			this.ProductsRegistryGroupBox.TabIndex = 3;
-			this.ProductsRegistryGroupBox.TabStop = false;
-			this.ProductsRegistryGroupBox.Text = "Registro de Produtos";
-			// 
-			// Add2StockButton
-			// 
-			this.Add2StockButton.Location = new System.Drawing.Point(6, 22);
-			this.Add2StockButton.Name = "Add2StockButton";
-			this.Add2StockButton.Size = new System.Drawing.Size(75, 42);
-			this.Add2StockButton.TabIndex = 0;
-			this.Add2StockButton.Text = "Adicionar ao Estoque";
-			this.Add2StockButton.UseVisualStyleBackColor = true;
-			// 
-			// RemoveFromStockButton
-			// 
-			this.RemoveFromStockButton.Location = new System.Drawing.Point(87, 22);
-			this.RemoveFromStockButton.Name = "RemoveFromStockButton";
-			this.RemoveFromStockButton.Size = new System.Drawing.Size(75, 42);
-			this.RemoveFromStockButton.TabIndex = 1;
-			this.RemoveFromStockButton.Text = "Retirar do Estoque";
-			this.RemoveFromStockButton.UseVisualStyleBackColor = true;
+			this.VisualizeStockButton.Location = new System.Drawing.Point(6, 70);
+			this.VisualizeStockButton.Name = "VisualizeStockButton";
+			this.VisualizeStockButton.Size = new System.Drawing.Size(237, 23);
+			this.VisualizeStockButton.TabIndex = 4;
+			this.VisualizeStockButton.Text = "Visualizar Estoque";
+			this.VisualizeStockButton.UseVisualStyleBackColor = true;
 			// 
 			// SearchProductButton
 			// 
@@ -301,23 +297,54 @@
 			this.SearchProductButton.Text = "Pesquisar Produto";
 			this.SearchProductButton.UseVisualStyleBackColor = true;
 			// 
-			// VisualizeStockButton
+			// RemoveFromStockButton
 			// 
-			this.VisualizeStockButton.Location = new System.Drawing.Point(6, 70);
-			this.VisualizeStockButton.Name = "VisualizeStockButton";
-			this.VisualizeStockButton.Size = new System.Drawing.Size(237, 23);
-			this.VisualizeStockButton.TabIndex = 4;
-			this.VisualizeStockButton.Text = "Visualizar Estoque";
-			this.VisualizeStockButton.UseVisualStyleBackColor = true;
+			this.RemoveFromStockButton.Location = new System.Drawing.Point(87, 22);
+			this.RemoveFromStockButton.Name = "RemoveFromStockButton";
+			this.RemoveFromStockButton.Size = new System.Drawing.Size(75, 42);
+			this.RemoveFromStockButton.TabIndex = 1;
+			this.RemoveFromStockButton.Text = "Retirar do Estoque";
+			this.RemoveFromStockButton.UseVisualStyleBackColor = true;
 			// 
-			// VisualizeRegButton
+			// Add2StockButton
 			// 
-			this.VisualizeRegButton.Location = new System.Drawing.Point(7, 70);
-			this.VisualizeRegButton.Name = "VisualizeRegButton";
-			this.VisualizeRegButton.Size = new System.Drawing.Size(237, 23);
-			this.VisualizeRegButton.TabIndex = 7;
-			this.VisualizeRegButton.Text = "Visualizar Registro";
-			this.VisualizeRegButton.UseVisualStyleBackColor = true;
+			this.Add2StockButton.Location = new System.Drawing.Point(6, 22);
+			this.Add2StockButton.Name = "Add2StockButton";
+			this.Add2StockButton.Size = new System.Drawing.Size(75, 42);
+			this.Add2StockButton.TabIndex = 0;
+			this.Add2StockButton.Text = "Adicionar ao Estoque";
+			this.Add2StockButton.UseVisualStyleBackColor = true;
+			// 
+			// ProductsRegistryGroupBox
+			// 
+			this.ProductsRegistryGroupBox.Controls.Add(this.SaveChangesRegButton);
+			this.ProductsRegistryGroupBox.Controls.Add(this.RegisterProductButton);
+			this.ProductsRegistryGroupBox.Controls.Add(this.RemoveProductButton);
+			this.ProductsRegistryGroupBox.Controls.Add(this.EditProductButton);
+			this.ProductsRegistryGroupBox.Location = new System.Drawing.Point(338, 221);
+			this.ProductsRegistryGroupBox.Name = "ProductsRegistryGroupBox";
+			this.ProductsRegistryGroupBox.Size = new System.Drawing.Size(255, 100);
+			this.ProductsRegistryGroupBox.TabIndex = 3;
+			this.ProductsRegistryGroupBox.TabStop = false;
+			this.ProductsRegistryGroupBox.Text = "Registro de Produtos";
+			// 
+			// SaveChangesRegButton
+			// 
+			this.SaveChangesRegButton.Location = new System.Drawing.Point(7, 70);
+			this.SaveChangesRegButton.Name = "SaveChangesRegButton";
+			this.SaveChangesRegButton.Size = new System.Drawing.Size(237, 23);
+			this.SaveChangesRegButton.TabIndex = 7;
+			this.SaveChangesRegButton.Text = "Salvar alterações do Registro";
+			this.SaveChangesRegButton.UseVisualStyleBackColor = true;
+			// 
+			// RegisterProductButton
+			// 
+			this.RegisterProductButton.Location = new System.Drawing.Point(7, 22);
+			this.RegisterProductButton.Name = "RegisterProductButton";
+			this.RegisterProductButton.Size = new System.Drawing.Size(75, 42);
+			this.RegisterProductButton.TabIndex = 5;
+			this.RegisterProductButton.Text = "Registrar Produto";
+			this.RegisterProductButton.UseVisualStyleBackColor = true;
 			// 
 			// RemoveProductButton
 			// 
@@ -337,33 +364,6 @@
 			this.EditProductButton.Text = "Editar Produto";
 			this.EditProductButton.UseVisualStyleBackColor = true;
 			// 
-			// RegisterProductButton
-			// 
-			this.RegisterProductButton.Location = new System.Drawing.Point(7, 22);
-			this.RegisterProductButton.Name = "RegisterProductButton";
-			this.RegisterProductButton.Size = new System.Drawing.Size(75, 42);
-			this.RegisterProductButton.TabIndex = 5;
-			this.RegisterProductButton.Text = "Registrar Produto";
-			this.RegisterProductButton.UseVisualStyleBackColor = true;
-			// 
-			// VisualizeNotificationsButton
-			// 
-			this.VisualizeNotificationsButton.Location = new System.Drawing.Point(6, 77);
-			this.VisualizeNotificationsButton.Name = "VisualizeNotificationsButton";
-			this.VisualizeNotificationsButton.Size = new System.Drawing.Size(75, 23);
-			this.VisualizeNotificationsButton.TabIndex = 5;
-			this.VisualizeNotificationsButton.Text = "Visualizar";
-			this.VisualizeNotificationsButton.UseVisualStyleBackColor = true;
-			// 
-			// CleanNotificationsButton
-			// 
-			this.CleanNotificationsButton.Location = new System.Drawing.Point(173, 77);
-			this.CleanNotificationsButton.Name = "CleanNotificationsButton";
-			this.CleanNotificationsButton.Size = new System.Drawing.Size(75, 23);
-			this.CleanNotificationsButton.TabIndex = 6;
-			this.CleanNotificationsButton.Text = "Limpar";
-			this.CleanNotificationsButton.UseVisualStyleBackColor = true;
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -376,10 +376,10 @@
 			this.Name = "MainForm";
 			this.Text = "Micro Stock Control";
 			this.StockGroupBox.ResumeLayout(false);
-			this.StockProductsGroupBox.ResumeLayout(false);
-			this.StockProductsGroupBox.PerformLayout();
 			this.OutStockProductsGroupBox.ResumeLayout(false);
 			this.OutStockProductsGroupBox.PerformLayout();
+			this.StockProductsGroupBox.ResumeLayout(false);
+			this.StockProductsGroupBox.PerformLayout();
 			this.NotificationsGroupBox.ResumeLayout(false);
 			this.NotificationsGroupBox.PerformLayout();
 			this.StockControlGroupBox.ResumeLayout(false);
@@ -412,7 +412,7 @@
 		private Button RemoveFromStockButton;
 		private Button Add2StockButton;
 		private GroupBox ProductsRegistryGroupBox;
-		private Button VisualizeRegButton;
+		private Button SaveChangesRegButton;
 		private Button RegisterProductButton;
 		private Button RemoveProductButton;
 		private Button EditProductButton;
