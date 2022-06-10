@@ -51,6 +51,7 @@
 			this.SaveButton = new System.Windows.Forms.Button();
 			this.SaveNextButton = new System.Windows.Forms.Button();
 			this.CancelButton = new System.Windows.Forms.Button();
+			this.SaveOutStock_CheckBox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// ProductLabel
@@ -240,11 +241,22 @@
 			this.CancelButton.Text = "Cancelar";
 			this.CancelButton.UseVisualStyleBackColor = true;
 			// 
+			// SaveOutStock_CheckBox
+			// 
+			this.SaveOutStock_CheckBox.AutoSize = true;
+			this.SaveOutStock_CheckBox.Location = new System.Drawing.Point(12, 313);
+			this.SaveOutStock_CheckBox.Name = "SaveOutStock_CheckBox";
+			this.SaveOutStock_CheckBox.Size = new System.Drawing.Size(152, 19);
+			this.SaveOutStock_CheckBox.TabIndex = 32;
+			this.SaveOutStock_CheckBox.Text = "Salvar FORA do estoque";
+			this.SaveOutStock_CheckBox.UseVisualStyleBackColor = true;
+			// 
 			// FillDataWindowForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 402);
+			this.Controls.Add(this.SaveOutStock_CheckBox);
 			this.Controls.Add(this.CancelButton);
 			this.Controls.Add(this.SaveNextButton);
 			this.Controls.Add(this.SaveButton);
@@ -302,5 +314,6 @@
 		private Button SaveButton;
 		private Button SaveNextButton;
 		private Button CancelButton;
+		private CheckBox SaveOutStock_CheckBox;
 	}
 }
