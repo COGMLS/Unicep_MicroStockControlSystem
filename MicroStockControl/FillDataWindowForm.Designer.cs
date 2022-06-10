@@ -42,16 +42,20 @@
 			this.BrandTextBox = new System.Windows.Forms.TextBox();
 			this.ManufacturerTextBox = new System.Windows.Forms.TextBox();
 			this.LotTextBox = new System.Windows.Forms.TextBox();
-			this.ManufacturingDateTextBox = new System.Windows.Forms.TextBox();
 			this.IdCodeTextBox = new System.Windows.Forms.TextBox();
 			this.QuantityStockTextBox = new System.Windows.Forms.TextBox();
 			this.UnitPriceTextBox = new System.Windows.Forms.TextBox();
 			this.UnitTextBox = new System.Windows.Forms.TextBox();
-			this.ExpirationDateTextBox = new System.Windows.Forms.TextBox();
 			this.SaveButton = new System.Windows.Forms.Button();
 			this.SaveNextButton = new System.Windows.Forms.Button();
-			this.CancelButton = new System.Windows.Forms.Button();
+			this.CancelButtonForm = new System.Windows.Forms.Button();
 			this.SaveOutStock_CheckBox = new System.Windows.Forms.CheckBox();
+			this.ExpirationDateMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+			this.ManufacturingDateMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+			this.UseManufacturingTimeCheckBox = new System.Windows.Forms.CheckBox();
+			this.UseExpirationTimeCheckBox = new System.Windows.Forms.CheckBox();
+			this.ManufacturingTimeMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+			this.ExpirationTimeMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
 			this.SuspendLayout();
 			// 
 			// ProductLabel
@@ -172,13 +176,6 @@
 			this.LotTextBox.Size = new System.Drawing.Size(624, 23);
 			this.LotTextBox.TabIndex = 22;
 			// 
-			// ManufacturingDateTextBox
-			// 
-			this.ManufacturingDateTextBox.Location = new System.Drawing.Point(164, 128);
-			this.ManufacturingDateTextBox.Name = "ManufacturingDateTextBox";
-			this.ManufacturingDateTextBox.Size = new System.Drawing.Size(624, 23);
-			this.ManufacturingDateTextBox.TabIndex = 23;
-			// 
 			// IdCodeTextBox
 			// 
 			this.IdCodeTextBox.Location = new System.Drawing.Point(164, 273);
@@ -207,13 +204,6 @@
 			this.UnitTextBox.Size = new System.Drawing.Size(624, 23);
 			this.UnitTextBox.TabIndex = 25;
 			// 
-			// ExpirationDateTextBox
-			// 
-			this.ExpirationDateTextBox.Location = new System.Drawing.Point(164, 157);
-			this.ExpirationDateTextBox.Name = "ExpirationDateTextBox";
-			this.ExpirationDateTextBox.Size = new System.Drawing.Size(624, 23);
-			this.ExpirationDateTextBox.TabIndex = 24;
-			// 
 			// SaveButton
 			// 
 			this.SaveButton.Location = new System.Drawing.Point(12, 367);
@@ -232,14 +222,14 @@
 			this.SaveNextButton.Text = "Salvar e Próximo";
 			this.SaveNextButton.UseVisualStyleBackColor = true;
 			// 
-			// CancelButton
+			// CancelButtonForm
 			// 
-			this.CancelButton.Location = new System.Drawing.Point(713, 367);
-			this.CancelButton.Name = "CancelButton";
-			this.CancelButton.Size = new System.Drawing.Size(75, 23);
-			this.CancelButton.TabIndex = 31;
-			this.CancelButton.Text = "Cancelar";
-			this.CancelButton.UseVisualStyleBackColor = true;
+			this.CancelButtonForm.Location = new System.Drawing.Point(713, 367);
+			this.CancelButtonForm.Name = "CancelButtonForm";
+			this.CancelButtonForm.Size = new System.Drawing.Size(75, 23);
+			this.CancelButtonForm.TabIndex = 31;
+			this.CancelButtonForm.Text = "Cancelar";
+			this.CancelButtonForm.UseVisualStyleBackColor = true;
 			// 
 			// SaveOutStock_CheckBox
 			// 
@@ -251,21 +241,83 @@
 			this.SaveOutStock_CheckBox.Text = "Salvar FORA do estoque";
 			this.SaveOutStock_CheckBox.UseVisualStyleBackColor = true;
 			// 
+			// ExpirationDateMaskedTextBox
+			// 
+			this.ExpirationDateMaskedTextBox.Culture = new System.Globalization.CultureInfo("pt-BR");
+			this.ExpirationDateMaskedTextBox.Location = new System.Drawing.Point(164, 128);
+			this.ExpirationDateMaskedTextBox.Mask = "00/00/0000";
+			this.ExpirationDateMaskedTextBox.Name = "ExpirationDateMaskedTextBox";
+			this.ExpirationDateMaskedTextBox.Size = new System.Drawing.Size(92, 23);
+			this.ExpirationDateMaskedTextBox.TabIndex = 33;
+			this.ExpirationDateMaskedTextBox.ValidatingType = typeof(System.DateTime);
+			// 
+			// ManufacturingDateMaskedTextBox
+			// 
+			this.ManufacturingDateMaskedTextBox.Culture = new System.Globalization.CultureInfo("pt-BR");
+			this.ManufacturingDateMaskedTextBox.Location = new System.Drawing.Point(164, 157);
+			this.ManufacturingDateMaskedTextBox.Mask = "00/00/0000";
+			this.ManufacturingDateMaskedTextBox.Name = "ManufacturingDateMaskedTextBox";
+			this.ManufacturingDateMaskedTextBox.Size = new System.Drawing.Size(92, 23);
+			this.ManufacturingDateMaskedTextBox.TabIndex = 34;
+			this.ManufacturingDateMaskedTextBox.ValidatingType = typeof(System.DateTime);
+			// 
+			// UseManufacturingTimeCheckBox
+			// 
+			this.UseManufacturingTimeCheckBox.AutoSize = true;
+			this.UseManufacturingTimeCheckBox.Location = new System.Drawing.Point(291, 130);
+			this.UseManufacturingTimeCheckBox.Name = "UseManufacturingTimeCheckBox";
+			this.UseManufacturingTimeCheckBox.Size = new System.Drawing.Size(87, 19);
+			this.UseManufacturingTimeCheckBox.TabIndex = 35;
+			this.UseManufacturingTimeCheckBox.Text = "Usar tempo";
+			this.UseManufacturingTimeCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// UseExpirationTimeCheckBox
+			// 
+			this.UseExpirationTimeCheckBox.AutoSize = true;
+			this.UseExpirationTimeCheckBox.Location = new System.Drawing.Point(291, 159);
+			this.UseExpirationTimeCheckBox.Name = "UseExpirationTimeCheckBox";
+			this.UseExpirationTimeCheckBox.Size = new System.Drawing.Size(87, 19);
+			this.UseExpirationTimeCheckBox.TabIndex = 36;
+			this.UseExpirationTimeCheckBox.Text = "Usar tempo";
+			this.UseExpirationTimeCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// ManufacturingTimeMaskedTextBox
+			// 
+			this.ManufacturingTimeMaskedTextBox.Location = new System.Drawing.Point(400, 128);
+			this.ManufacturingTimeMaskedTextBox.Mask = "00:00";
+			this.ManufacturingTimeMaskedTextBox.Name = "ManufacturingTimeMaskedTextBox";
+			this.ManufacturingTimeMaskedTextBox.Size = new System.Drawing.Size(100, 23);
+			this.ManufacturingTimeMaskedTextBox.TabIndex = 37;
+			this.ManufacturingTimeMaskedTextBox.ValidatingType = typeof(System.DateTime);
+			// 
+			// ExpirationTimeMaskedTextBox
+			// 
+			this.ExpirationTimeMaskedTextBox.Location = new System.Drawing.Point(400, 157);
+			this.ExpirationTimeMaskedTextBox.Mask = "00:00";
+			this.ExpirationTimeMaskedTextBox.Name = "ExpirationTimeMaskedTextBox";
+			this.ExpirationTimeMaskedTextBox.Size = new System.Drawing.Size(100, 23);
+			this.ExpirationTimeMaskedTextBox.TabIndex = 38;
+			this.ExpirationTimeMaskedTextBox.ValidatingType = typeof(System.DateTime);
+			// 
 			// FillDataWindowForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 402);
+			this.Controls.Add(this.ExpirationTimeMaskedTextBox);
+			this.Controls.Add(this.ManufacturingTimeMaskedTextBox);
+			this.Controls.Add(this.UseExpirationTimeCheckBox);
+			this.Controls.Add(this.UseManufacturingTimeCheckBox);
+			this.Controls.Add(this.ManufacturingDateMaskedTextBox);
+			this.Controls.Add(this.ExpirationDateMaskedTextBox);
 			this.Controls.Add(this.SaveOutStock_CheckBox);
-			this.Controls.Add(this.CancelButton);
+			this.Controls.Add(this.CancelButtonForm);
 			this.Controls.Add(this.SaveNextButton);
 			this.Controls.Add(this.SaveButton);
 			this.Controls.Add(this.IdCodeTextBox);
 			this.Controls.Add(this.QuantityStockTextBox);
 			this.Controls.Add(this.UnitPriceTextBox);
 			this.Controls.Add(this.UnitTextBox);
-			this.Controls.Add(this.ExpirationDateTextBox);
-			this.Controls.Add(this.ManufacturingDateTextBox);
 			this.Controls.Add(this.LotTextBox);
 			this.Controls.Add(this.ManufacturerTextBox);
 			this.Controls.Add(this.BrandTextBox);
@@ -305,15 +357,19 @@
 		private TextBox BrandTextBox;
 		private TextBox ManufacturerTextBox;
 		private TextBox LotTextBox;
-		private TextBox ManufacturingDateTextBox;
 		private TextBox IdCodeTextBox;
 		private TextBox QuantityStockTextBox;
 		private TextBox UnitPriceTextBox;
 		private TextBox UnitTextBox;
-		private TextBox ExpirationDateTextBox;
 		private Button SaveButton;
 		private Button SaveNextButton;
-		private Button CancelButton;
+		private Button CancelButtonForm;
 		private CheckBox SaveOutStock_CheckBox;
+		private MaskedTextBox ExpirationDateMaskedTextBox;
+		private MaskedTextBox ManufacturingDateMaskedTextBox;
+		private CheckBox UseManufacturingTimeCheckBox;
+		private CheckBox UseExpirationTimeCheckBox;
+		private MaskedTextBox ManufacturingTimeMaskedTextBox;
+		private MaskedTextBox ExpirationTimeMaskedTextBox;
 	}
 }
