@@ -15,48 +15,117 @@
 
 namespace DatabaseManagerLib
 {
-	// DbDate: class for storage the date.
-	// NOTE: To determinate if the date will not include time, use Hours >= 24
-	// NOTE: To determinate a date not available for ExpirationDate property, use Day = 0
+	// DbDate: class for storage the date and time info.
+	// NOTE: UseTime is a control variable to avoid have problems when the user don't set the time.
+	// NOTE: IsValidDateTime is a control variable to determinate if the data is valid to be used or not.
 	public class DbDate
 	{
-		public uint Seconds { get; set; }
-		public uint Minutes { get; set; }
-		public uint Hours { get; set; }
-		public uint Day { get; set; }
-		public uint Month { get; set; }
-		public uint Year { get; set; }
+		// Class data:
+		public System.DateTime dateTime;
+		public bool UseTime;
+		public bool IsValidDateTime;
 
+		// Constructor to use all infomations available:
+		public DbDate(int year, int month, int day, int hour, int minute, int second)
+		{
+			this.dateTime = new System.DateTime(year, month, day, hour, minute, second);
+			
+			this.UseTime = true;
+
+			this.IsValidDateTime = true;
+		}
+
+		// Constructor to use only the date info:
+		public DbDate(int year, int month, int day)
+		{
+			dateTime = new System.DateTime(year, month, day);
+
+			this.UseTime = false;
+
+			this.IsValidDateTime = true;
+		}
+
+		// Constructor to not available data:
 		public DbDate()
 		{
-			// Turn ExpirationDate unavailable:
-			this.Day = 0;
-			this.Month = 0;
-			this.Year = 0;
-			this.Hours = 24;
-			this.Minutes = 0;
-			this.Seconds = 0;
+			dateTime = new System.DateTime();
+
+			this.UseTime = false;
+
+			this.IsValidDateTime = false;
 		}
 
-		public DbDate(uint Day, uint Month, uint Year, uint Hours, uint Minutes, uint Seconds)
+		// Check if only the date is equal, dosn't verify the time:
+		public bool IsDateEqual(System.DateTime dateTime)
 		{
-			this.Day = Day;
-			this.Month = Month;
-			this.Year = Year;
-			this.Hours = Hours;
-			this.Minutes = Minutes;
-			this.Seconds = Seconds;
+			if(this.dateTime.Year == dateTime.Year)
+			{
+				if(this.dateTime.Month == dateTime.Month)
+				{
+					if(this.dateTime.Day == dateTime.Day)
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
 		}
 
-		public DbDate(uint Day, uint Month, uint Year)
+		// Update the date time data:
+		public bool UpdateDateTime(int year, int month, int day, int hour, int minute, int second)
 		{
-			this.Day = Day;
-			this.Month = Month;
-			this.Year = Year;
+			try
+			{
+				this.dateTime = new System.DateTime(year, month, day, hour, minute, second);
 
-			this.Hours = 24;
-			this.Minutes = 0;
-			this.Seconds = 0;
+				this.UseTime = true;
+
+				this.IsValidDateTime = true;
+
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+				throw;
+			}
+		}
+
+		// Update the date time data, only with date:
+		public bool UpdateDateTime(int year, int month, int day)
+		{
+			try
+			{
+				this.dateTime = new System.DateTime(year, month, day);
+
+				this.UseTime = false;
+
+				this.IsValidDateTime = true;
+
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+				throw;
+			}
+		}
+
+		//Update the date time data to not available data:
+		public bool UpdateDateTime()
+		{
+			try
+			{
+				this.IsValidDateTime = false;
+
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+				throw;
+			}
 		}
 	}
 
@@ -163,60 +232,24 @@ namespace DatabaseManagerLib
 		//
 
 		// ManufacturingDate:
-		public string GetManufacDate()
+		public string GetManufacDate(bool UseOnlyDate = false)
 		{
 			string dateStr = "";
 
-			if(this.ManufacturingDate.Day < 10)
+			if(this.ManufacturingDate.IsValidDateTime)
 			{
-				dateStr += "0" + this.ManufacturingDate.Day.ToString() + "/";
+				if (UseOnlyDate)
+				{
+					dateStr = this.ManufacturingDate.dateTime.ToShortDateString();
+				}
+				else
+				{
+					dateStr = this.ManufacturingDate.dateTime.ToString();
+				}
 			}
 			else
 			{
-				dateStr += this.ManufacturingDate.Day.ToString() + "/";
-			}
-
-			if (this.ManufacturingDate.Month < 10)
-			{
-				dateStr += "0" + this.ManufacturingDate.Day.ToString() + "/";
-			}
-			else
-			{
-				dateStr += this.ManufacturingDate.Day.ToString() + "/";
-			}
-
-			dateStr += this.ManufacturingDate.Year.ToString();
-
-			if(this.ManufacturingDate.Hours < 24)
-			{
-				dateStr += " ";
-
-				if(this.ManufacturingDate.Hours < 10)
-				{
-					dateStr += "0" + this.ManufacturingDate.Hours.ToString() + ":";
-				}
-				else
-				{
-					dateStr += this.ManufacturingDate.Hours.ToString() + ":";
-				}
-
-				if (this.ManufacturingDate.Minutes < 10)
-				{
-					dateStr += "0" + this.ManufacturingDate.Minutes.ToString() + ":";
-				}
-				else
-				{
-					dateStr += this.ManufacturingDate.Minutes.ToString() + ":";
-				}
-
-				if (this.ManufacturingDate.Seconds < 10)
-				{
-					dateStr += "0" + this.ManufacturingDate.Seconds.ToString();
-				}
-				else
-				{
-					dateStr += this.ManufacturingDate.Seconds.ToString();
-				}
+				dateStr = "Not available";
 			}
 
 			return dateStr;
@@ -230,68 +263,25 @@ namespace DatabaseManagerLib
 			return db;
 		}
 
-		// Expiration formated date (DD/MM/AAAA)
-		public string GetExpirateDate()
+		// Expiration formated date:
+		public string GetExpirateDate(bool UseOnlyDate = false)
 		{
 			string dateStr = "";
 
-			if (this.ExpirationDate.Day > 0)
+			if (this.ExpirationDate.IsValidDateTime)
 			{
-				if (this.ExpirationDate.Day < 10)
+				if (UseOnlyDate)
 				{
-					dateStr += "0" + this.ExpirationDate.Day.ToString() + "/";
+					dateStr = this.ExpirationDate.dateTime.ToShortDateString();
 				}
 				else
 				{
-					dateStr += this.ExpirationDate.Day.ToString() + "/";
-				}
-
-				if (this.ExpirationDate.Month < 10)
-				{
-					dateStr += "0" + this.ExpirationDate.Day.ToString() + "/";
-				}
-				else
-				{
-					dateStr += this.ExpirationDate.Day.ToString() + "/";
-				}
-
-				dateStr += this.ExpirationDate.Year.ToString();
-
-				if (this.ExpirationDate.Hours < 24)
-				{
-					dateStr += " ";
-
-					if (this.ExpirationDate.Hours < 10)
-					{
-						dateStr += "0" + this.ExpirationDate.Hours.ToString() + ":";
-					}
-					else
-					{
-						dateStr += this.ExpirationDate.Hours.ToString() + ":";
-					}
-
-					if (this.ExpirationDate.Minutes < 10)
-					{
-						dateStr += "0" + this.ExpirationDate.Minutes.ToString() + ":";
-					}
-					else
-					{
-						dateStr += this.ExpirationDate.Minutes.ToString() + ":";
-					}
-
-					if (this.ExpirationDate.Seconds < 10)
-					{
-						dateStr += "0" + this.ExpirationDate.Seconds.ToString();
-					}
-					else
-					{
-						dateStr += this.ExpirationDate.Seconds.ToString();
-					}
+					dateStr = this.ExpirationDate.dateTime.ToString();
 				}
 			}
 			else
 			{
-				dateStr += "N/A";
+				dateStr = "Not available";
 			}
 
 			return dateStr;
@@ -310,40 +300,21 @@ namespace DatabaseManagerLib
 		//
 
 		// ManufacturingDate with complete date and time:
-		public void SetManufacDate(uint Day, uint Month, uint Year, uint Hours, uint Minutes, uint Seconds)
+		public void SetManufacDate(int Day, int Month, int Year, int Hours, int Minutes, int Seconds)
 		{
-			this.ManufacturingDate.Day = Day;
-			this.ManufacturingDate.Month = Month;
-			this.ManufacturingDate.Year = Year;
-			this.ManufacturingDate.Hours = Hours;
-			this.ManufacturingDate.Minutes = Minutes;
-			this.ManufacturingDate.Seconds = Seconds;
+			this.ManufacturingDate.UpdateDateTime(Year, Month, Day, Hours, Minutes, Seconds);
 		}
 
 		// ManufacturingDate with only date
-		public void SetManufacDate(uint Day, uint Month, uint Year)
+		public void SetManufacDate(int Day, int Month, int Year)
 		{
-			this.ManufacturingDate.Day = Day;
-			this.ManufacturingDate.Month = Month;
-			this.ManufacturingDate.Year = Year;
-
-			// Turn as unavailable time.
-			this.ManufacturingDate.Hours = 24;
-			this.ManufacturingDate.Minutes = 0;
-			this.ManufacturingDate.Seconds = 0;
+			this.ManufacturingDate.UpdateDateTime(Year, Month, Day);
 		}
 
 		// Unkown or not available Manufacturing Date:
 		public void SetManufacDate()
 		{
-			this.ManufacturingDate.Day = 0;
-			this.ManufacturingDate.Month = 0;
-			this.ManufacturingDate.Year = 0;
-
-			// Turn as unavailable time.
-			this.ManufacturingDate.Hours = 24;
-			this.ManufacturingDate.Minutes = 0;
-			this.ManufacturingDate.Seconds = 0;
+			this.ManufacturingDate.UpdateDateTime();
 		}
 
 		// ManufacturingDate object ready to be setted:
@@ -353,40 +324,21 @@ namespace DatabaseManagerLib
 		}
 
 		// ExpirationDate with complete date and time:
-		public void SetExpiratDate(uint Day, uint Month, uint Year, uint Hours, uint Minutes, uint Seconds)
+		public void SetExpiratDate(int Day, int Month, int Year, int Hours, int Minutes, int Seconds)
 		{
-			this.ExpirationDate.Day = Day;
-			this.ExpirationDate.Month = Month;
-			this.ExpirationDate.Year = Year;
-			this.ExpirationDate.Hours = Hours;
-			this.ExpirationDate.Minutes = Minutes;
-			this.ExpirationDate.Seconds = Seconds;
+			this.ExpirationDate.UpdateDateTime(Year, Month, Day, Hours, Minutes, Seconds);
 		}
 
 		// ExpirationDate with only date
-		public void SetExpiratDate(uint Day, uint Month, uint Year)
+		public void SetExpiratDate(int Day, int Month, int Year)
 		{
-			this.ExpirationDate.Day = Day;
-			this.ExpirationDate.Month = Month;
-			this.ExpirationDate.Year = Year;
-
-			// Turn as unavailable time.
-			this.ExpirationDate.Hours = 24;
-			this.ExpirationDate.Minutes = 0;
-			this.ExpirationDate.Seconds = 0;
+			this.ExpirationDate.UpdateDateTime(Year, Month, Day);
 		}
 
 		// Unknow or not available expiration date:
 		public void SetExpiratDate()
 		{
-			this.ExpirationDate.Day = 0;
-			this.ExpirationDate.Month = 0;
-			this.ExpirationDate.Year = 0;
-
-			// Turn as unavailable time.
-			this.ExpirationDate.Hours = 24;
-			this.ExpirationDate.Minutes = 0;
-			this.ExpirationDate.Seconds = 0;
+			this.ExpirationDate.UpdateDateTime();
 		}
 
 		// ExpirationDate object ready to be setted:
@@ -394,6 +346,10 @@ namespace DatabaseManagerLib
 		{
 			this.ExpirationDate = ExpirationDate;
 		}
+
+		//
+		// Treatment Functions:
+		//
 
 		// Update object data:
 		public bool UpdateData(ref DataDefinition EditedObj)
@@ -423,42 +379,87 @@ namespace DatabaseManagerLib
 				{
 					this.Lot = EditedObj.Lot;
 				}
-				if (this.ManufacturingDate != EditedObj.ManufacturingDate)
+
+				//
+				// Manufacturing Date treatment:
+				//
+
+				// Check if the updated data will be used
+				if (EditedObj.ManufacturingDate.IsValidDateTime)
 				{
-					// If the new date has only date information:
-					if (EditedObj.ManufacturingDate.Hours > 23)
+					// Verify if both objects use the time data
+					if (this.ManufacturingDate.UseTime && EditedObj.ManufacturingDate.UseTime)
 					{
-						this.SetManufacDate(EditedObj.ManufacturingDate.Day, EditedObj.ManufacturingDate.Month, EditedObj.ManufacturingDate.Year);
+						// If the dates and times are diferent, update them
+						if (this.ManufacturingDate.dateTime != EditedObj.ManufacturingDate.dateTime)
+						{
+							this.ManufacturingDate = EditedObj.ManufacturingDate;
+						}
 					}
-					// If the new date has all informations available:
-					else if(EditedObj.ManufacturingDate.Hours < 24)
-					{
-						this.SetManufacDate(EditedObj.ManufacturingDate.Day, EditedObj.ManufacturingDate.Month, EditedObj.ManufacturingDate.Year, EditedObj.ManufacturingDate.Hours, EditedObj.ManufacturingDate.Minutes, EditedObj.ManufacturingDate.Seconds);
-					}
-					// If the new date is a blanck data
+					// If only one or no one use UseTime variable control
 					else
 					{
-						this.SetManufacDate();
+						// If the dates are diferent, update it.
+						if (!this.ManufacturingDate.IsDateEqual(EditedObj.ManufacturingDate.dateTime))
+						{
+							// If the updated data will use time data
+							if (EditedObj.ManufacturingDate.UseTime)
+							{
+								this.ManufacturingDate = EditedObj.ManufacturingDate;
+							}
+							// Create an object to represent only the date
+							else
+							{
+								this.ManufacturingDate.UpdateDateTime(EditedObj.ManufacturingDate.dateTime.Year, EditedObj.ManufacturingDate.dateTime.Month, EditedObj.ManufacturingDate.dateTime.Day);
+							}
+						}
 					}
 				}
-				if (this.ExpirationDate != EditedObj.ExpirationDate)
+				else
 				{
-					// If the new date has only date information:
-					if (EditedObj.ExpirationDate.Hours > 23)
+					this.ManufacturingDate = EditedObj.ManufacturingDate;
+				}
+
+				//
+				// Expiration Date treatment:
+				//
+
+				// Check if the updated data will be used
+				if (EditedObj.ExpirationDate.IsValidDateTime)
+				{
+					// Verify if both objects use the time data
+					if (this.ExpirationDate.UseTime && EditedObj.ExpirationDate.UseTime)
 					{
-						this.SetExpiratDate(EditedObj.ExpirationDate.Day, EditedObj.ExpirationDate.Month, EditedObj.ExpirationDate.Year);
+						// If the dates and times are diferent, update them
+						if (this.ExpirationDate.dateTime != EditedObj.ExpirationDate.dateTime)
+						{
+							this.ExpirationDate = EditedObj.ExpirationDate;
+						}
 					}
-					// If the new date has all informations available:
-					else if (EditedObj.ExpirationDate.Hours < 24)
-					{
-						this.SetExpiratDate(EditedObj.ExpirationDate.Day, EditedObj.ExpirationDate.Month, EditedObj.ExpirationDate.Year, EditedObj.ExpirationDate.Hours, EditedObj.ExpirationDate.Minutes, EditedObj.ExpirationDate.Seconds);
-					}
-					// If the new date is a blanck data
+					// If only one or no one use UseTime variable control
 					else
 					{
-						this.SetExpiratDate();
+						// If the dates are diferent, update it.
+						if (!this.ExpirationDate.IsDateEqual(EditedObj.ExpirationDate.dateTime))
+						{
+							// If the updated data will use time data
+							if (EditedObj.ExpirationDate.UseTime)
+							{
+								this.ExpirationDate = EditedObj.ExpirationDate;
+							}
+							// Create an object to represent only the date
+							else
+							{
+								this.ExpirationDate.UpdateDateTime(EditedObj.ExpirationDate.dateTime.Year, EditedObj.ExpirationDate.dateTime.Month, EditedObj.ExpirationDate.dateTime.Day);
+							}
+						}
 					}
 				}
+				else
+				{
+					this.ExpirationDate = EditedObj.ExpirationDate;
+				}
+
 				if (this.Unit != EditedObj.Unit)
 				{
 					this.Unit = EditedObj.Unit;
