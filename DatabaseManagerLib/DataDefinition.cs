@@ -26,6 +26,38 @@ namespace DatabaseManagerLib
 		public uint Day { get; set; }
 		public uint Month { get; set; }
 		public uint Year { get; set; }
+
+		public DbDate()
+		{
+			// Turn ExpirationDate unavailable:
+			this.Day = 0;
+			this.Month = 0;
+			this.Year = 0;
+			this.Hours = 24;
+			this.Minutes = 0;
+			this.Seconds = 0;
+		}
+
+		public DbDate(uint Day, uint Month, uint Year, uint Hours, uint Minutes, uint Seconds)
+		{
+			this.Day = Day;
+			this.Month = Month;
+			this.Year = Year;
+			this.Hours = Hours;
+			this.Minutes = Minutes;
+			this.Seconds = Seconds;
+		}
+
+		public DbDate(uint Day, uint Month, uint Year)
+		{
+			this.Day = Day;
+			this.Month = Month;
+			this.Year = Year;
+
+			this.Hours = 24;
+			this.Minutes = 0;
+			this.Seconds = 0;
+		}
 	}
 
 	// DataDefinition: class to define the list for the app database
@@ -89,15 +121,8 @@ namespace DatabaseManagerLib
 		// Constructor for NO ExpirationDate
 		public DataDefinition(ulong StockItemID, string Product, string Brand, string Manufacturer, string Lot, DbDate ManufacturingDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
 		{
+			// Create an empty ExpirationDate:
 			DbDate ExpirationDate = new DbDate();
-
-			// Turn ExpirationDate unavailable:
-			ExpirationDate.Day = 0;
-			ExpirationDate.Month = 0;
-			ExpirationDate.Year = 0;
-			ExpirationDate.Hours = 24;
-			ExpirationDate.Minutes = 0;
-			ExpirationDate.Seconds = 0;
 
 			// Set object property values:
 			this.StockItemID = StockItemID;
@@ -116,15 +141,8 @@ namespace DatabaseManagerLib
 		// Constructor for NO Brand info and Expiration Date:
 		public DataDefinition(ulong StockItemID, string Product, string Manufacturer, string Lot, DbDate ManufacturingDate, string Unit, ulong UnitPrice, ulong QuantityStock, string IdCode)
 		{
+			// Create an empty ExpirationDate:
 			DbDate ExpirationDate = new DbDate();
-
-			// Turn ExpirationDate unavailable:
-			ExpirationDate.Day = 0;
-			ExpirationDate.Month = 0;
-			ExpirationDate.Year = 0;
-			ExpirationDate.Hours = 24;
-			ExpirationDate.Minutes = 0;
-			ExpirationDate.Seconds = 0;
 
 			// Set object property values:
 			this.StockItemID = StockItemID;
@@ -207,9 +225,7 @@ namespace DatabaseManagerLib
 		// ManufacturingDateDb:
 		public DbDate GetManufacDateDb()
 		{
-			DbDate db = new DbDate();
-
-			db = this.ManufacturingDate;
+			DbDate db = this.ManufacturingDate;
 
 			return db;
 		}
@@ -279,6 +295,14 @@ namespace DatabaseManagerLib
 			}
 
 			return dateStr;
+		}
+
+		// ExpirationDateDb:
+		public DbDate GetExpirateDateDb()
+		{
+			DbDate db = this.ExpirationDate;
+
+			return db;
 		}
 
 		//
