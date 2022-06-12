@@ -26,8 +26,8 @@ namespace DatabaseStorageLib
 		private ulong StockUniqueIDCounter;
 
 		// Stock status:
-		private int ActiveStockItems;
-		private int InactiveStockItems;
+		private long ActiveStockItems;
+		private long InactiveStockItems;
 		private int StockTypeID;
 
 		// Constructor to determinate a new storage
@@ -40,8 +40,8 @@ namespace DatabaseStorageLib
 			this.StockUniqueIDCounter = 0;
 
 			// Define the Stock Status:
-			this.InactiveStockItems = this.ActiveStockItems - this.StockList.Count;
-			this.ActiveStockItems = this.StockList.Count;
+			this.InactiveStockItems = 0;
+			this.ActiveStockItems = 0;
 			this.StockTypeID = StockTypeID;
 		}
 
@@ -88,6 +88,9 @@ namespace DatabaseStorageLib
 			// Try save the data in files.
 			try
 			{
+				// Call the function to create the files and directory hierarchy.
+
+
 				return 0;
 			}
 			catch (Exception)
@@ -95,6 +98,25 @@ namespace DatabaseStorageLib
 				return 4;
 				throw;
 			}
+		}
+
+		// Get the Active Item in Stock:
+		public long GetActiveItems()
+		{
+			return this.ActiveStockItems;
+		}
+
+		// Get the Inactive Item in Stock:
+		public long GetInactiveItems()
+		{
+			return this.InactiveStockItems;
+		}
+
+		// Call to update the Active and Inactive items in stock:
+		public void UpdateStockStatus()
+		{
+			this.ActiveStockItems = this.UpdateStockStatusActiveItems();
+			this.InactiveStockItems = this.ActiveStockItems - this.StockList.LongCount();
 		}
 
 		// Add an item from stock:
@@ -137,6 +159,22 @@ namespace DatabaseStorageLib
 		public bool EditRegProdStock(ref DataDefinition EditedItem)
 		{
 			return DbMngLib.EditRegProdStock(ref EditedItem, ref this.StockList);
+		}
+
+		// Return the number of active items in stock:
+		private long UpdateStockStatusActiveItems()
+		{
+			long NumActiveItems = 0;
+			
+			foreach (var item in this.StockList)
+			{
+				if(item.QuantityStock > 0)
+				{
+					NumActiveItems++;
+				}
+			}
+
+			return NumActiveItems;
 		}
 	}
 }
