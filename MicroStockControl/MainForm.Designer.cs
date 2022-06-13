@@ -56,6 +56,7 @@
 			this.RegisterProductButton = new System.Windows.Forms.Button();
 			this.RemoveProductButton = new System.Windows.Forms.Button();
 			this.EditProductButton = new System.Windows.Forms.Button();
+			this.LoadRegistryButton = new System.Windows.Forms.Button();
 			this.StockGroupBox.SuspendLayout();
 			this.OutStockProductsGroupBox.SuspendLayout();
 			this.StockProductsGroupBox.SuspendLayout();
@@ -317,6 +318,7 @@
 			// 
 			// ProductsRegistryGroupBox
 			// 
+			this.ProductsRegistryGroupBox.Controls.Add(this.LoadRegistryButton);
 			this.ProductsRegistryGroupBox.Controls.Add(this.SaveChangesRegButton);
 			this.ProductsRegistryGroupBox.Controls.Add(this.RegisterProductButton);
 			this.ProductsRegistryGroupBox.Controls.Add(this.RemoveProductButton);
@@ -332,9 +334,9 @@
 			// 
 			this.SaveChangesRegButton.Location = new System.Drawing.Point(7, 70);
 			this.SaveChangesRegButton.Name = "SaveChangesRegButton";
-			this.SaveChangesRegButton.Size = new System.Drawing.Size(237, 23);
+			this.SaveChangesRegButton.Size = new System.Drawing.Size(115, 23);
 			this.SaveChangesRegButton.TabIndex = 7;
-			this.SaveChangesRegButton.Text = "Salvar alterações do Registro";
+			this.SaveChangesRegButton.Text = "Salvar Registro";
 			this.SaveChangesRegButton.UseVisualStyleBackColor = true;
 			// 
 			// RegisterProductButton
@@ -363,6 +365,15 @@
 			this.EditProductButton.TabIndex = 6;
 			this.EditProductButton.Text = "Editar Produto";
 			this.EditProductButton.UseVisualStyleBackColor = true;
+			// 
+			// LoadRegistryButton
+			// 
+			this.LoadRegistryButton.Location = new System.Drawing.Point(128, 70);
+			this.LoadRegistryButton.Name = "LoadRegistryButton";
+			this.LoadRegistryButton.Size = new System.Drawing.Size(116, 23);
+			this.LoadRegistryButton.TabIndex = 4;
+			this.LoadRegistryButton.Text = "Carregar Registro";
+			this.LoadRegistryButton.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -418,5 +429,6 @@
 		private Button EditProductButton;
 		private Button CleanNotificationsButton;
 		private Button VisualizeNotificationsButton;
+		private Button LoadRegistryButton;
 	}
 }
