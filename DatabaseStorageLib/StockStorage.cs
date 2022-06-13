@@ -49,8 +49,7 @@ namespace DatabaseStorageLib
 		public int SaveChanges(string path)
 		{
 			// Define the locations to save the stock database:
-			string MicroStockDB = path + "\\MicroStockControlDB";
-			string StockDB = MicroStockDB + "\\" + this.StockTypeID.ToString() + ".db";
+			string StockDB = DbStorageMng.GetStorageStorageRootPath(path, this.StockTypeID);
 
 			// Verify if the directory exist
 			if (!Directory.Exists(path))
@@ -59,11 +58,11 @@ namespace DatabaseStorageLib
 			}
 
 			// If the directory to storage the database dosn't exist try to create it.
-			if (!Directory.Exists(MicroStockDB))
+			if (!Directory.Exists(DbStorageMng.MicroStockDB))
 			{
 				try
 				{
-					Directory.CreateDirectory(MicroStockDB);
+					Directory.CreateDirectory(DbStorageMng.MicroStockDB);
 				}
 				catch (Exception)
 				{
@@ -91,6 +90,9 @@ namespace DatabaseStorageLib
 			{
 				// Call the function to create the files and directory hierarchy.
 				_ = DbStorageMng.SaveStockStorage(StockDB, ref this.StockList);
+
+				// Save dbstatus:
+				_ = SaveStockStatus(StockDB);
 
 				return 0;
 			}
@@ -176,6 +178,34 @@ namespace DatabaseStorageLib
 			}
 
 			return NumActiveItems;
+		}
+
+		// Save the dbstatus file:
+		private bool SaveStockStatus(string StockStorageRoot)
+		{
+			// Save dbstatus:
+			string[] dbstatus = new string[2];
+			
+			// Prepare info:
+			dbstatus[0] = "StockID";
+			dbstatus[1] = StockTypeID.ToString();
+
+			try
+			{
+				File.WriteAllLines(StockStorageRoot + "\\dbstatus", dbstatus);
+
+				if(File.Exists(StockStorageRoot + "\\dbtatus"))
+				{
+					return true;
+				}
+
+				return false;
+			}
+			catch (Exception)
+			{
+				return false;
+				throw;
+			}
 		}
 	}
 }
