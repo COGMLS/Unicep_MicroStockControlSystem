@@ -302,7 +302,7 @@ namespace DatabaseManagerLib
 		// ManufacturingDate:
 		public string GetManufacDate(bool UseOnlyDate = false)
 		{
-			string dateStr = "";
+			string dateStr;
 
 			if(this.ManufacturingDate.IsValidDateTime)
 			{
@@ -314,6 +314,11 @@ namespace DatabaseManagerLib
 				{
 					dateStr = this.ManufacturingDate.dateTime.ToString();
 				}
+			}
+			// If only date is available, display only the date:
+			else if (this.ManufacturingDate.IsValidDateTime && (this.ManufacturingDate.UseTime == false))
+			{
+				dateStr = this.ManufacturingDate.dateTime.ToShortDateString();
 			}
 			else
 			{
@@ -334,7 +339,7 @@ namespace DatabaseManagerLib
 		// Expiration formated date:
 		public string GetExpirateDate(bool UseOnlyDate = false)
 		{
-			string dateStr = "";
+			string dateStr;
 
 			if (this.ExpirationDate.IsValidDateTime)
 			{
@@ -346,6 +351,11 @@ namespace DatabaseManagerLib
 				{
 					dateStr = this.ExpirationDate.dateTime.ToString();
 				}
+			}
+			// If only date is available, display only the date:
+			else if (this.ExpirationDate.IsValidDateTime && (this.ExpirationDate.UseTime == false))
+			{
+				dateStr = this.ExpirationDate.dateTime.ToShortDateString();
 			}
 			else
 			{
