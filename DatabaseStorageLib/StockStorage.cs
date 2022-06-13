@@ -48,6 +48,7 @@ namespace DatabaseStorageLib
 		// Save the database:
 		public int SaveChanges(string path)
 		{
+			// Define the locations to save the stock database:
 			string MicroStockDB = path + "\\MicroStockControlDB";
 			string StockDB = MicroStockDB + "\\" + this.StockTypeID.ToString() + ".db";
 
@@ -57,26 +58,12 @@ namespace DatabaseStorageLib
 				return 1;
 			}
 
-			// If the directory to storage the database will try create it.
+			// If the directory to storage the database dosn't exist try to create it.
 			if (!Directory.Exists(MicroStockDB))
 			{
 				try
 				{
 					Directory.CreateDirectory(MicroStockDB);
-
-					// Creates the directory container
-					if (Directory.Exists(StockDB))
-					{
-						try
-						{
-							Directory.CreateDirectory(StockDB);
-						}
-						catch (Exception)
-						{
-							return 2;
-							throw;
-						}
-					}
 				}
 				catch (Exception)
 				{
@@ -85,11 +72,25 @@ namespace DatabaseStorageLib
 				}
 			}
 
+			// Creates the directory container, if dosn't exist
+			if (!Directory.Exists(StockDB))
+			{
+				try
+				{
+					Directory.CreateDirectory(StockDB);
+				}
+				catch (Exception)
+				{
+					return 2;
+					throw;
+				}
+			}
+
 			// Try save the data in files.
 			try
 			{
 				// Call the function to create the files and directory hierarchy.
-
+				_ = DbStorageMng.SaveStockStorage(StockDB, ref this.StockList);
 
 				return 0;
 			}
