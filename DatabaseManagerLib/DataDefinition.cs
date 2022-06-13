@@ -72,6 +72,74 @@ namespace DatabaseManagerLib
 			return false;
 		}
 
+		// Check if only the date is bigger than, dosn't verify the time:
+		public bool IsDateBiggerThan(System.DateTime dateTime)
+		{
+			if (this.dateTime.Year >= dateTime.Year)
+			{
+				if (this.dateTime.Month >= dateTime.Month)
+				{
+					if (this.dateTime.Day > dateTime.Day)
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		// Check if only the date is less than, dosn't verify the time:
+		public bool IsDateLessThan(System.DateTime dateTime)
+		{
+			if (this.dateTime.Year <= dateTime.Year)
+			{
+				if (this.dateTime.Month <= dateTime.Month)
+				{
+					if (this.dateTime.Day < dateTime.Day)
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		// Check if only the date is equal or bigger than, dosn't verify the time:
+		public bool IsDateBiggerOrEqualThan(System.DateTime dateTime)
+		{
+			if (this.dateTime.Year >= dateTime.Year)
+			{
+				if (this.dateTime.Month >= dateTime.Month)
+				{
+					if (this.dateTime.Day >= dateTime.Day)
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
+		// Check if only the date is equal or less than, dosn't verify the time:
+		public bool IsDateLessOrEqualThan(System.DateTime dateTime)
+		{
+			if (this.dateTime.Year <= dateTime.Year)
+			{
+				if (this.dateTime.Month <= dateTime.Month)
+				{
+					if (this.dateTime.Day <= dateTime.Day)
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
+
 		// Update the date time data:
 		public bool UpdateDateTime(int year, int month, int day, int hour, int minute, int second)
 		{
