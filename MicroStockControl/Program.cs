@@ -1,5 +1,15 @@
+using DatabaseStorageLib;
+
 namespace MicroStockControl
 {
+	// Create a global storage:
+	public static class StockGlobalAccess
+	{
+		// Create an empty stock data base:
+		public static StockStorage InStockDB = new StockStorage(0);
+		public static StockStorage OutStockDB = new StockStorage(1);
+	}
+
 	internal static class Program
 	{
 		/// <summary>
