@@ -1,4 +1,6 @@
-﻿namespace MicroStockControl
+﻿using System.Data;
+
+namespace MicroStockControl
 {
 	partial class StockViewForm
 	{
@@ -55,6 +57,7 @@
 			this.RefreshDataGridViewButton.TabIndex = 1;
 			this.RefreshDataGridViewButton.Text = "Atualizar";
 			this.RefreshDataGridViewButton.UseVisualStyleBackColor = true;
+			this.RefreshDataGridViewButton.Click += new System.EventHandler(this.RefreshDataGridViewButton_Click);
 			// 
 			// StockViewForm
 			// 
@@ -74,5 +77,8 @@
 
 		private DataGridView StockDataGridView;
 		private Button RefreshDataGridViewButton;
+
+		// Stock Local DataTable visualization:
+		private DataTable StockDataTable;
 	}
 }
